@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { getAllPokemon } from "../getAllPokemon";
 import PokemonCard from "./PokemonCard";
+import styles from "../styles/FirstPokemonDisplay.module.css";
 
 function FirstPokemonsDisplay() {
   const [firstPokemons, setFirstPokemons] = React.useState([]);
@@ -11,7 +12,7 @@ function FirstPokemonsDisplay() {
     console.dir(firstPokemons);
   }, []);
   return (
-    <div>
+    <div id={styles.listPokemon}>
       <h1>Liste des {MAX_POKEMONS_DISPLAY - 1} premiers pokemon</h1>
       {firstPokemons
         ? firstPokemons
