@@ -1,0 +1,16 @@
+.cardModel {
+  border: double 4px grey;
+  padding: 1em;
+  background-image: radial-gradient(
+    ellipse at top,
+    rgb(238, 238, 219),
+    rgb(243, 200, 8)
+  );
+  color: black;
+  width: 50%;
+  margin: 1em 0 2em 1em;
+}
+
+span {
+  font-weight: bold;
+}
