@@ -9,25 +9,26 @@ function FirstPokemonsDisplay() {
 
   useEffect(() => {
     getAllPokemon().then((pokemons) => setFirstPokemons(pokemons));
-    console.dir(firstPokemons);
   }, []);
   return (
-    <div id={styles.listPokemon}>
+    <div>
       <h1>Liste des {MAX_POKEMONS_DISPLAY - 1} premiers pokemon</h1>
-      {firstPokemons
-        ? firstPokemons
-            .filter(
-              (pokemon) =>
-                pokemon.pokedexId < MAX_POKEMONS_DISPLAY &&
-                pokemon.pokedexId !== 0
-            )
-            .map((pokemon) => (
-              <PokemonCard
-                pokemon={pokemon}
-                key={pokemon.pokedexId}
-              ></PokemonCard>
-            ))
-        : null}
+      <div id={styles.listPokemon}>
+        {firstPokemons
+          ? firstPokemons
+              .filter(
+                (pokemon) =>
+                  pokemon.pokedexId < MAX_POKEMONS_DISPLAY &&
+                  pokemon.pokedexId !== 0
+              )
+              .map((pokemon) => (
+                <PokemonCard
+                  pokemon={pokemon}
+                  key={pokemon.pokedexId}
+                ></PokemonCard>
+              ))
+          : null}
+      </div>
     </div>
   );
 }

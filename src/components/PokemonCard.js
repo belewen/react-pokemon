@@ -5,10 +5,10 @@ function PokemonCard({ pokemon }) {
   return (
     <div className={styles.cardModel}>
       <p>
-        N ° Pokedex : <span>{pokemon.pokedexId}</span>
+        N ° Pokedex : <b>{pokemon.pokedexId}</b>
       </p>
       <p>
-        Nom du Pokemon : <span>{pokemon.name.fr}</span>
+        Nom du Pokemon : <b>{pokemon.name.fr}</b>
       </p>
       <img src={pokemon.sprites.regular} alt={pokemon.name.fr}></img>
     </div>
