@@ -2,9 +2,7 @@ import React from "react";
 import styles from "../styles/FormPokemon.module.css";
 import PokemonResult from "./PokemonResult";
 
-function FormPokemon({ inputPokemon, handleInputPokemon }) {
-  const [searchPokemon, setSearchPokemon] = React.useState(null);
-
+function FormPokemon({ inputPokemon, handleInputPokemon, setSearchPokemon }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchPokemon(inputPokemon);
@@ -22,8 +20,6 @@ function FormPokemon({ inputPokemon, handleInputPokemon }) {
         />
         <input type="submit" value={"CHERCHER"} />
       </form>
-
-      <PokemonResult searchPokemon={searchPokemon}></PokemonResult>
     </div>
   );
 }

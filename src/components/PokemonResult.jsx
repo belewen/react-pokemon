@@ -3,7 +3,7 @@ import React from "react";
 import PokemonCard from "./PokemonCard";
 import styles from "../styles/PokemonResult.module.css";
 
-function PokemonResult({ searchPokemon }) {
+function PokemonResult({ searchPokemon, setSearchPokemon }) {
   const [results, setResult] = React.useState([]);
 
   React.useEffect(() => {
