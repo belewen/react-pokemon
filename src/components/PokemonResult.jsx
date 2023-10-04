@@ -3,34 +3,40 @@ import React from "react";
 import PokemonCard from "./PokemonCard";
 import styles from "../styles/PokemonResult.module.css";
 
-function PokemonResult({ searchPokemon, setSearchPokemon }) {
+function PokemonResult({ searchPokemon, setSearchPokemon, selectLang }) {
   const [results, setResult] = React.useState([]);
+  const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
-    getAllPokemon().then((pokemons) =>
+    getAllPokemon().then((pokemons) => {
       setResult(
         pokemons.filter((pokemon) =>
-          pokemon?.name?.fr
-            ?.toLowerCase()
-            ?.includes(searchPokemon?.toLowerCase())
+          pokemon.name[selectLang]
+            .toLowerCase()
+            .includes(searchPokemon?.toLowerCase())
         )
-      )
-    );
+      );
+    });
   }, [searchPokemon]);
 
-  const noResult = searchPokemon ? (
-    <p style={{ color: "red" }}>Aucun résultat</p>
-  ) : null;
+  //Lève une erreur  si aucun pokemon n'est trouvé après recherche
+  React.useEffect(() => {
+    if (searchPokemon !== null && results.length === 0) {
+      setError(true);
+    }
+  });
 
   return (
     <div>
       {searchPokemon ? <h2>Les résultats</h2> : null}
       <div id={styles.listResult}>
-        {results.length
-          ? results.map((pokemon) => (
-              <PokemonCard key={pokemon} pokemon={pokemon}></PokemonCard>
-            ))
-          : noResult}
+        {results.map((pokemon) => (
+          <PokemonCard
+            key={pokemon}
+            pokemon={pokemon}
+            selectLang={selectLang}
+          ></PokemonCard>
+        ))}
       </div>
     </div>
   );

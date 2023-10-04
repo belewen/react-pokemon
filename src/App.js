@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import FirstPokemonsDisplay from "./components/FirstPokemonsDisplay";
 import FormPokemon from "./components/FormPokemon";
 import PokemonResult from "./components/PokemonResult";
+import ErrorBoundary from "./components/ErrorBoundary";
+import ErrorDisplay from "./components/ErrorDisplay";
 
 function App() {
   const [inputPokemon, setInputPokemon] = React.useState(null);
   const [searchPokemon, setSearchPokemon] = React.useState(null);
+  const [selectLang, setSelectLang] = useState("fr");
 
   const handleInputPokemon = (e) => {
     e.preventDefault();
@@ -17,16 +20,21 @@ function App() {
 
   return (
     <div className="App">
-      <FirstPokemonsDisplay></FirstPokemonsDisplay>
       <FormPokemon
         inputPokemon={inputPokemon}
         handleInputPokemon={handleInputPokemon}
         setSearchPokemon={setSearchPokemon}
+        setSelectLang={setSelectLang}
+        selectLang={selectLang}
       ></FormPokemon>
-      <PokemonResult
-        searchPokemon={searchPokemon}
-        setSearchPokemon={setSearchPokemon}
-      ></PokemonResult>
+      <ErrorBoundary ErrorDisplay={ErrorDisplay}>
+        <PokemonResult
+          searchPokemon={searchPokemon}
+          setSearchPokemon={setSearchPokemon}
+          selectLang={selectLang}
+        ></PokemonResult>
+      </ErrorBoundary>
+      <FirstPokemonsDisplay></FirstPokemonsDisplay>
     </div>
   );
 }
