@@ -9,13 +9,12 @@ import ErrorDisplay from "./components/ErrorDisplay";
 
 function App() {
   const [inputPokemon, setInputPokemon] = React.useState(null);
-  const [searchPokemon, setSearchPokemon] = React.useState(null);
+  const [pokemonName, setPokemonName] = React.useState(null);
   const [selectLang, setSelectLang] = useState("fr");
 
   const handleInputPokemon = (e) => {
     e.preventDefault();
     setInputPokemon(() => e.target.value);
-    console.log("inputPokemon", inputPokemon);
   };
 
   return (
@@ -23,14 +22,14 @@ function App() {
       <FormPokemon
         inputPokemon={inputPokemon}
         handleInputPokemon={handleInputPokemon}
-        setSearchPokemon={setSearchPokemon}
+        setPokemonName={setPokemonName}
         setSelectLang={setSelectLang}
         selectLang={selectLang}
       ></FormPokemon>
-      <ErrorBoundary ErrorDisplay={ErrorDisplay}>
+      <ErrorBoundary ErrorDisplay={ErrorDisplay} key={pokemonName}>
         <PokemonResult
-          searchPokemon={searchPokemon}
-          setSearchPokemon={setSearchPokemon}
+          pokemonName={pokemonName}
+          setPokemonName={setPokemonName}
           selectLang={selectLang}
         ></PokemonResult>
       </ErrorBoundary>

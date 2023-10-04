@@ -5,19 +5,17 @@ import PokemonResult from "./PokemonResult";
 function FormPokemon({
   inputPokemon,
   handleInputPokemon,
-  setSearchPokemon,
+  setPokemonName,
   setSelectLang,
   selectLang,
 }) {
   const formSubmit = (e) => {
     e.preventDefault();
-    setSearchPokemon(inputPokemon);
+    setPokemonName(inputPokemon);
   };
 
-  const refLang = React.useRef(null);
-
   const handleChange = (event) => {
-    setSelectLang(event.target.value);
+    setSelectLang((event) => event.target.value);
   };
 
   return (
